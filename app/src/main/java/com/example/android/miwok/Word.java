@@ -9,6 +9,7 @@ public class Word {
     private String mMiwokTranslation;
     private int mMiwokImageId = NO_IMAGE_PROVIDED;
     private static final int NO_IMAGE_PROVIDED = -1;
+    private int mMiwokAudioId;
 
     /**
      +     * Create a new Word object.
@@ -32,10 +33,11 @@ public class Word {
      +     * @param miwokImageId is the drawable resource ID for the image associated with the word
      +     *
      +     */
-    public Word(String defaultTranslation, String miwokTranslation, int miwokImageId) {
+    public Word(String defaultTranslation, String miwokTranslation, int miwokImageId, int miwokAudioId) {
         mDefaultTranslation = defaultTranslation;
         mMiwokTranslation = miwokTranslation;
         mMiwokImageId = miwokImageId;
+        mMiwokAudioId = miwokAudioId;
     }
 
 //  get the default value of the word
@@ -49,6 +51,11 @@ public class Word {
     //get the Miwok image resource id
     public int getmImageResourceId() {
         return mMiwokImageId;
+    }
+
+    //get the Miwok audio resource id
+    public int getmAudioResourceId() {
+        return mMiwokAudioId;
     }
 
     /* return wether this work has an image or not
