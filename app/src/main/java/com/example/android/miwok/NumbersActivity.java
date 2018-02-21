@@ -54,13 +54,15 @@ public class NumbersActivity extends AppCompatActivity {
         // {@link ListView} will display list items for each {@link Word} in the list.
         listView.setAdapter(adapter);
 
+        //set OnItemClickListener for listView
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //include the action when a listview item is clicked
                 //in this example, construct a mediaplayer object, and play the audio
-                mMediaPlayer = mMediaPlayer.create(NumbersActivity.this, R.raw.number_one);
+                mMediaPlayer = MediaPlayer.create(NumbersActivity.this, R.raw.number_one);
                 mMediaPlayer.start();
+                //Toast.makeText(NumbersActivity.this, "list item clicked" , Toast.LENGTH_SHORT).show();
             }
         });
 
