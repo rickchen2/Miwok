@@ -3,6 +3,7 @@ package com.example.android.miwok;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -61,8 +62,10 @@ public class NumbersActivity extends AppCompatActivity {
                 //get the words object in current position, and save it to a new Word oject called "wordListener"
                 Word wordListener = words.get(position);
 
+                Log.d("NumbersActivity", "Current word: " + wordListener);
+
                 //When a listview item is clicked
-                //construct a mediaplayer object, and play the audio
+                // Create and setup the {@link MediaPlayer} for the audio resource associated with the current word, and play the audio
                 mMediaPlayer = MediaPlayer.create(NumbersActivity.this, wordListener.getmAudioResourceId());
                 mMediaPlayer.start();
                 //Toast.makeText(NumbersActivity.this, "list item clicked" , Toast.LENGTH_SHORT).show();

@@ -18,6 +18,7 @@ public class Word {
      +     *                           (such as English)
      +     * @param miwokTranslation is the word in the Miwok language
      +     *
+     +     * @param mMiwokAudioId is the audio resource ID for the audio assoicated with the word
      +     */
     public Word(String defaultTranslation, String miwokTranslation, int miwokAudioId) {
         mDefaultTranslation = defaultTranslation;
@@ -32,6 +33,7 @@ public class Word {
      +     *                           (such as English)
      +     * @param miwokTranslation is the word in the Miwok language
      +     * @param miwokImageId is the drawable resource ID for the image associated with the word
+     +     * @param mMiwokAudioId is the audio resource ID for the audio assoicated with the word
      +     *
      +     */
     public Word(String defaultTranslation, String miwokTranslation, int miwokImageId, int miwokAudioId) {
@@ -64,5 +66,17 @@ public class Word {
      */
     public boolean hasImage(){
         return mMiwokImageId != NO_IMAGE_PROVIDED;
+    }
+
+
+//    Returns the string representation of the {@link Word} object
+    @Override
+    public String toString() {
+        return "Word{" +
+                "mDefaultTranslation='" + mDefaultTranslation + '\'' +
+                ", mMiwokTranslation='" + mMiwokTranslation + '\'' +
+                ", mMiwokImageId=" + mMiwokImageId +
+                ", mMiwokAudioId=" + mMiwokAudioId +
+                '}';
     }
 }
