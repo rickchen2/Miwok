@@ -12,6 +12,28 @@ import java.util.ArrayList;
 
 public class NumbersActivity extends AppCompatActivity {
     private MediaPlayer mMediaPlayer;
+    private MediaPlayer.OnCompletionListener mOnCompletionListener = new MediaPlayer.OnCompletionListener() {
+        @Override
+        public void onCompletion(MediaPlayer mediaPlayer) {
+            releaseMediaPlayer();
+        }
+    };
+    /**
+     * Clean up the media player by releasing its resources.
+     */
+    private void releaseMediaPlayer() {
+        // If the media player is not null, then it may be currently playing a sound.
+        if (mMediaPlayer != null) {
+            // Regardless of the current state of the media player, release its resources
+            // because we no longer need it.
+            mMediaPlayer.release();
+
+            // Set the media player back to null. For our code, we've decided that
+            // setting the media player to null is an easy way to tell that the media player
+            // is not configured to play an audio file at the moment.
+            mMediaPlayer = null;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +86,19 @@ public class NumbersActivity extends AppCompatActivity {
 
                 Log.d("NumbersActivity", "Current word: " + wordListener);
 
+                // Release the media player if it currently exists because we are about to
+                // play a different sound file
+                releaseMediaPlayer();
+
                 //When a listview item is clicked
                 // Create and setup the {@link MediaPlayer} for the audio resource associated with the current word, and play the audio
                 mMediaPlayer = MediaPlayer.create(NumbersActivity.this, wordListener.getmAudioResourceId());
                 mMediaPlayer.start();
                 //Toast.makeText(NumbersActivity.this, "list item clicked" , Toast.LENGTH_SHORT).show();
+
+                // Setup a listener on the media player, so that we can stop and release the
+                // media player once the sound has finished playing.
+                mMediaPlayer.setOnCompletionListener(mOnCompletionListener);
             }
         });
 
